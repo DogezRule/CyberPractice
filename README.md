@@ -186,7 +186,7 @@ This guide walks you through creating a CyberPatriot practice environment using 
    ```
 
 3. Paste the following configuration:
-   ```toml
+   ```
    [name = "CyberPatriot Advanced Practice Image"
 title = "Advanced Image"
 os = "Ubuntu 20.04"
@@ -300,6 +300,7 @@ type = "FileContains"
 path = "/home/student1/Desktop/forensics5.txt"
 value = "Top Secret!"
 ]
+
    ```
 
 4. Test Aeacus:
