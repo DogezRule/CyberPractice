@@ -187,7 +187,119 @@ This guide walks you through creating a CyberPatriot practice environment using 
 
 3. Paste the following configuration:
    ```toml
-   [Paste the `scoring.toml` content provided earlier here]
+   [name = "CyberPatriot Advanced Practice Image"
+title = "Advanced Image"
+os = "Ubuntu 20.04"
+user = "student1"
+version = "1.0.0"
+
+[[check]]
+message = "Unauthorized user 'hacker' has been removed."
+points = 5
+[[check.pass]]
+type = "UserExistsNot"
+user = "hacker"
+
+[[check]]
+message = "Unauthorized user 'backdoor' has been removed."
+points = 5
+[[check.pass]]
+type = "UserExistsNot"
+user = "backdoor"
+
+[[check]]
+message = "Weak password for 'admin' has been fixed."
+points = 5
+[[check.pass]]
+type = "PasswordHashNot"
+user = "admin"
+hash = "$1$"
+
+[[check]]
+message = "Root login via SSH has been disabled."
+points = 10
+[[check.pass]]
+type = "FileContainsNot"
+path = "/etc/ssh/sshd_config"
+value = "PermitRootLogin yes"
+
+[[check]]
+message = "Apache directory listing has been disabled."
+points = 10
+[[check.pass]]
+type = "FileContainsNot"
+path = "/etc/apache2/apache2.conf"
+value = "Options Indexes"
+
+[[check]]
+message = "Malicious cron job has been removed."
+points = 10
+[[check.pass]]
+type = "PathExistsNot"
+path = "/etc/cron.d/malware"
+
+[[check]]
+message = "Samba share is properly secured."
+points = 10
+[[check.pass]]
+type = "FileContainsNot"
+path = "/etc/samba/smb.conf"
+value = "writable = yes"
+
+[[check]]
+message = "Hidden directory has been removed."
+points = 5
+[[check.pass]]
+type = "PathExistsNot"
+path = "/home/student1/.hidden"
+
+[[check]]
+message = "Unauthorized netcat listener has been disabled."
+points = 5
+[[check.pass]]
+type = "PortListeningNot"
+port = 5555
+
+[[check]]
+message = "Forensics Question 1: Correct answer provided."
+points = 5
+[[check.pass]]
+type = "FileContains"
+path = "/home/student1/Desktop/forensics1.txt"
+value = "192.168.1.200"
+
+[[check]]
+message = "Forensics Question 2: Correct answer provided."
+points = 5
+[[check.pass]]
+type = "FileContains"
+path = "/home/student1/Desktop/forensics2.txt"
+value = "Sensitive API keys"
+
+[[check]]
+message = "Forensics Question 3: Correct answer provided."
+points = 5
+[[check.pass]]
+type = "FileContains"
+path = "/home/student1/Desktop/forensics3.txt"
+value = "vuln_user"
+
+[[check]]
+message = "Forensics Question 4: Correct answer provided."
+points = 5
+[[check.pass]]
+type = "FileContains"
+path = "/home/student1/Desktop/forensics4.txt"
+value = "*/15 * * * * root echo"
+
+[[check]]
+message = "Forensics Question 5: Correct answer provided."
+points = 5
+[[check.pass]]
+type = "FileContains"
+path = "/home/student1/Desktop/forensics5.txt"
+value = "Top Secret!"
+]
    ```
 
 4. Test Aeacus:
